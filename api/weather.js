@@ -1,36 +1,17 @@
 export default async function handler(req, res) {
-  // CORS 헤더
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
   const { nx, ny, baseDate, baseTime } = req.query;
-
-  if (!nx || !ny || !baseDate || !baseTime) {
-    return res.status(400).json({
-      error: 'Missing parameters: nx, ny, baseDate, baseTime',
-    });
-  }
-
   const apiKey = process.env.DATA_GO_KR_API_KEY;
 
-  if (!apiKey) {
-    return res.status(500).json({
-      error: 'API key not configured',
-    });
-  }
+  if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
 
   try {
-    const url = 'https://api.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst/getVilageFcstList';
+    // 단기예보 조회 서비스 엔드포인트 수정
+    const url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
     
-    const params = new URLSearchParams({
-      serviceKey: apiKey,
-      pageNo: 1,
-      numOfRows: 100,
+    const queryParams = new URLSearchParams({
+      serviceKey: apiKey, // 이미 인코딩된 키인 경우 주의 필요
+      pageNo: '1',
+      numOfRows: '100',
       dataType: 'JSON',
       base_date: baseDate,
       base_time: baseTime,
@@ -38,19 +19,15 @@ export default async function handler(req, res) {
       ny: ny,
     });
 
-    const response = await fetch(`${url}?${params}`);
+    const response = await fetch(`${url}?${queryParams.toString()}`);
     const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(data.response?.header?.resultMsg || 'API Error');
+    if (data.response?.header?.resultCode !== '00') {
+      throw new Error(data.response?.header?.resultMsg || '기상청 API 응답 오류');
     }
 
     return res.status(200).json(data);
   } catch (error) {
-    console.error('API Error:', error.message);
-    return res.status(500).json({
-      error: 'Failed to fetch weather data',
-      message: error.message,
-    });
+    return res.status(500).json({ error: '데이터 호출 실패', message: error.message });
   }
 }
