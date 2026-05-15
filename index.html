@@ -5,176 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🌤️ 위치 기반 날씨 앱</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #333;
-}
-
-.container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
-}
-
-.main {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-h1 {
-  color: white;
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-  color: #333;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-}
-
-.card {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.address {
-  color: #666;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.weatherCard {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.weatherContent {
-  background: #f5f5f5;
-  border-radius: 8px;
-  padding: 15px;
-  max-height: 400px;
-  overflow-y: auto;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  color: #333;
-  line-height: 1.6;
-}
-
-.weatherContent div {
-  margin: 5px 0;
-}
-
-.error {
-  background: #fee;
-  border-left: 4px solid #d32f2f;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  color: #c62828;
-}
-
-.error p {
-  margin: 0 0 15px 0;
-}
-
-.loading {
-  background: white;
-  border-radius: 16px;
-  padding: 40px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.loading p {
-  color: #667eea;
-  font-size: 1.1rem;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-.btn {
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.btn:hover {
-  background: #764ba2;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
-
-.btn-error {
-  background: #d32f2f;
-  width: auto;
-}
-
-.btn-error:hover {
-  background: #b71c1c;
-}
-
-.debug {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.debug h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.debug p {
-  margin: 5px 0;
-  font-family: 'Courier New', monospace;
-}
-
-@media (max-width: 600px) {
-  .container { padding: 10px; }
-  h1 { font-size: 1.8rem; margin-bottom: 30px; }
-  .card, .weatherCard { padding: 20px; }
-  h2 { font-size: 1.3rem; }
-}
+/* (기존 스타일 유지) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { font-family: -apple-system, sans-serif; color: #333; }
+.container { min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; }
+.main { max-width: 600px; margin: 0 auto; }
+h1 { color: white; text-align: center; margin-bottom: 40px; font-size: 2.5rem; }
+.card, .weatherCard { background: white; border-radius: 16px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+.weatherContent { background: #f5f5f5; border-radius: 8px; padding: 15px; max-height: 400px; overflow-y: auto; font-family: monospace; line-height: 1.6; }
+.error { background: #fee; border-left: 4px solid #d32f2f; padding: 20px; margin-bottom: 20px; color: #c62828; }
+.loading { background: white; border-radius: 16px; padding: 40px; text-align: center; color: #667eea; animation: pulse 1.5s infinite; }
+.btn { background: #667eea; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.3s; }
+.btn:hover { background: #764ba2; }
+.debug { background: rgba(255, 255, 255, 0.9); padding: 15px; margin-top: 20px; font-size: 0.9rem; border-radius: 8px; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
 </style>
 </head>
 <body>
@@ -189,88 +33,71 @@ h2 {
 const appDiv = document.getElementById('app');
 let loading = false;
 let error = null;
-let location = null;
+let userLocation = null; // location -> userLocation 으로 변경
 let weather = null;
 let coords = null;
 
-// LCC 좌표 변환 (위도/경도 → 기상청 그리드)
+// LCC 좌표 변환 (기상청 격자 좌표 변환)
 function convertLatLonToGrid(lat, lon) {
-  const RE = 6371.00877;
-  const GRID = 5.0;
-  const SLAT1 = 30.0;
-  const SLAT2 = 60.0;
-  const OLON = 126.0;
-  const OLAT = 38.0;
-  const XO = 43;
-  const YO = 136;
-
+  const RE = 6371.00877, GRID = 5.0, SLAT1 = 30.0, SLAT2 = 60.0, OLON = 126.0, OLAT = 38.0, XO = 43, YO = 136;
   const DEGRAD = Math.PI / 180.0;
-  const slat1 = SLAT1 * DEGRAD;
-  const slat2 = SLAT2 * DEGRAD;
-  const olon = OLON * DEGRAD;
-  const olat = OLAT * DEGRAD;
-
+  const re = RE / GRID, slat1 = SLAT1 * DEGRAD, slat2 = SLAT2 * DEGRAD, olon = OLON * DEGRAD, olat = OLAT * DEGRAD;
   let sn = Math.tan(Math.PI * 0.25 + slat2 * 0.5) / Math.tan(Math.PI * 0.25 + slat1 * 0.5);
   sn = Math.log(Math.cos(slat1) / Math.cos(slat2)) / Math.log(sn);
   let sf = Math.tan(Math.PI * 0.25 + slat1 * 0.5);
   sf = (Math.pow(sf, sn) * Math.cos(slat1)) / sn;
   let ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
-  ro = (RE * sf / Math.pow(ro, sn)) * GRID;
+  ro = (re * sf) / Math.pow(ro, sn);
+  let ra = Math.tan(Math.PI * 0.25 + lat * DEGRAD * 0.5);
+  ra = (re * sf) / Math.pow(ra, sn);
+  let theta = lon * DEGRAD - olon;
+  if (theta > Math.PI) theta -= 2.0 * Math.PI;
+  if (theta < -Math.PI) theta += 2.0 * Math.PI;
+  theta *= sn;
+  return {
+    nx: Math.floor(ra * Math.sin(theta) + XO + 0.5),
+    ny: Math.floor(ro - ra * Math.cos(theta) + YO + 0.5)
+  };
+}
 
-  const theta = lon * DEGRAD - olon;
-  let templon = theta;
-  if (theta > 0) {
-    templon = theta - Math.PI * 2.0;
-  } else if (theta < -Math.PI * 2.0) {
-    templon = theta + Math.PI * 2.0;
+// 기상청 단기예보 발표 시간 계산 (02, 05, 08, 11, 14, 17, 20, 23시)
+function getBaseDateTime() {
+  const now = new Date();
+  let baseDate = now.toISOString().slice(0, 10).replace(/-/g, "");
+  const hours = [2, 5, 8, 11, 14, 17, 20, 23];
+  const currentHour = now.getHours();
+  
+  // 현재 시간보다 이전의 가장 가까운 발표 시간 찾기
+  let targetHour = hours.filter(h => h <= currentHour).pop();
+  
+  if (targetHour === undefined) { // 02시 이전인 경우 어제 23시 데이터 사용
+    const yesterday = new Date(now.setDate(now.getDate() - 1));
+    baseDate = yesterday.toISOString().slice(0, 10).replace(/-/g, "");
+    targetHour = 23;
   }
-
-  templon *= sn;
-  let x = ro * Math.sin(templon) + XO;
-  let y = ro - ro * Math.cos(templon) + YO;
-
-  return { nx: Math.round(x), ny: Math.round(y) };
+  
+  const baseTime = String(targetHour).padStart(2, '0') + '00';
+  return { baseDate, baseTime };
 }
 
-// 기준 날짜 (YYYYMMDD)
-function getBaseDate() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const date = String(now.getDate()).padStart(2, '0');
-  return year + month + date;
-}
-
-// 기준 시간 (HHMM) - 기상청은 2시간 단위로 발표
-function getBaseTime() {
-  const now = new Date();
-  const hour = now.getHours();
-  const baseHour = Math.floor(hour / 2) * 2;
-  return String(baseHour).padStart(2, '0') + '00';
-}
-
-// 날씨 데이터 조회
 async function fetchWeather(nx, ny) {
   try {
-    const baseDate = getBaseDate();
-    const baseTime = getBaseTime();
+    const { baseDate, baseTime } = getBaseDateTime();
     const response = await fetch(`/api/weather?nx=${nx}&ny=${ny}&baseDate=${baseDate}&baseTime=${baseTime}`);
     const data = await response.json();
     
-    if (!response.ok) {
-      throw new Error(data.error || '날씨 데이터를 가져올 수 없습니다');
-    }
+    if (!response.ok) throw new Error(data.error || '날씨 데이터를 가져올 수 없습니다');
     
     weather = data;
     error = null;
-    render();
   } catch (err) {
     error = `날씨 데이터 오류: ${err.message}`;
+  } finally {
+    loading = false;
     render();
   }
 }
 
-// 위치 정보 가져오기
 function getLocation() {
   loading = true;
   error = null;
@@ -287,125 +114,48 @@ function getLocation() {
     async (position) => {
       const { latitude, longitude } = position.coords;
       coords = { latitude, longitude };
-
-      try {
-        const grid = convertLatLonToGrid(latitude, longitude);
-        location = {
-          latitude,
-          longitude,
-          address: `서울시 강남구 (위도: ${latitude.toFixed(4)}, 경도: ${longitude.toFixed(4)})`,
-        };
-
-        await fetchWeather(grid.nx, grid.ny);
-      } catch (err) {
-        error = `오류: ${err.message}`;
-        loading = false;
-        render();
-      }
+      const grid = convertLatLonToGrid(latitude, longitude);
+      userLocation = { latitude, longitude }; // userLocation 업데이트
+      await fetchWeather(grid.nx, grid.ny);
     },
     (err) => {
       error = `위치 정보 오류: ${err.message}`;
       loading = false;
       render();
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0,
     }
   );
 }
 
-// UI 렌더링
 function render() {
   let html = '';
-
-  if (error) {
-    html += `<div class="card error"><p>${error}</p><button class="btn btn-error" onclick="getLocation()">다시 시도</button></div>`;
+  if (error) html += `<div class="card error"><p>${error}</p><button class="btn" onclick="getLocation()">다시 시도</button></div>`;
+  if (loading) html += `<div class="loading"><p>📍 위치 정보를 가져오는 중...</p></div>`;
+  
+  if (userLocation && !loading) {
+    html += `<div class="card"><h2>📍 현재 위치</h2><p>위도: ${userLocation.latitude.toFixed(4)}, 경도: ${userLocation.longitude.toFixed(4)}</p><button class="btn" onclick="getLocation()">위치 갱신</button></div>`;
   }
 
-  if (loading) {
-    html += `<div class="loading"><p>📍 위치 정보를 가져오는 중...</p></div>`;
-  }
-
-  if (location && !loading) {
-    html += `
-      <div class="card">
-        <h2>📍 현재 위치</h2>
-        <p class="address">${location.address}</p>
-        <button class="btn" onclick="getLocation()">위치 갱신</button>
-      </div>
-    `;
-  }
-
-  if (weather && !loading && weather.response && weather.response.body) {
-    const items = weather.response.body.items || [];
-    let weatherHtml = '<h2>🌡️ 날씨 정보</h2>';
+  if (weather && !loading && weather.response?.body) {
+    const items = weather.response.body.items.item || [];
+    const categoryMap = { 'TMP': '🌡️ 현재 기온', 'POP': '☔ 강수 확률', 'SKY': '☁️ 하늘 상태', 'WSD': '💨 풍속', 'REH': '💧 습도' };
     
-    if (items.length > 0) {
-      const categoryMap = {
-        'POP': '☔ 강수확률',
-        'PTY': '🌦️ 강수형태',
-        'R06': '💧 6시간강수량',
-        'S06': '❄️ 신적설',
-        'SKY': '☁️ 하늘상태',
-        'T3H': '🌡️ 3시간기온',
-        'TMP': '🌡️ 기온',
-        'TMX': '🔥 최고기온',
-        'TMN': '❄️ 최저기온',
-        'UUU': '💨 동쪽바람',
-        'VVV': '💨 북쪽바람',
-        'WAV': '🌊 파고',
-        'VEC': '🧭 풍향',
-        'WSD': '💨 풍속',
-      };
-      
-      weatherHtml += '<div class="weatherContent">';
-      items.slice(0, 12).forEach(item => {
-        const cat = categoryMap[item.category] || item.category;
-        const unit = getUnit(item.category);
-        weatherHtml += `<div><strong>${cat}:</strong> ${item.fcstValue}${unit}</div>`;
-      });
-      weatherHtml += '</div>';
-    } else {
-      weatherHtml += '<p>날씨 데이터를 불러올 수 없습니다.</p>';
-    }
+    let weatherHtml = '<h2>🌡️ 예보 정보</h2><div class="weatherContent">';
+    items.filter(i => categoryMap[i.category]).slice(0, 5).forEach(item => {
+      const cat = categoryMap[item.category];
+      weatherHtml += `<div><strong>${cat}:</strong> ${item.fcstValue}${getUnit(item.category)}</div>`;
+    });
+    weatherHtml += '</div>';
     html += `<div class="weatherCard">${weatherHtml}</div>`;
-  }
-
-  if (coords) {
-    html += `
-      <div class="debug">
-        <h3>📊 현재 좌표</h3>
-        <p>위도: ${coords.latitude.toFixed(6)}</p>
-        <p>경도: ${coords.longitude.toFixed(6)}</p>
-      </div>
-    `;
   }
 
   appDiv.innerHTML = html;
 }
 
-// 단위 반환
 function getUnit(category) {
-  const units = {
-    'POP': '%',
-    'R06': 'mm',
-    'S06': 'cm',
-    'T3H': '℃',
-    'TMP': '℃',
-    'TMX': '℃',
-    'TMN': '℃',
-    'UUU': 'm/s',
-    'VVV': 'm/s',
-    'WAV': 'm',
-    'VEC': '°',
-    'WSD': 'm/s',
-  };
+  const units = { 'TMP': '℃', 'POP': '%', 'WSD': 'm/s', 'REH': '%' };
   return units[category] || '';
 }
 
-// 페이지 로드시 위치 가져오기
 window.addEventListener('DOMContentLoaded', getLocation);
 </script>
 </body>
